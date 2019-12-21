@@ -1,9 +1,12 @@
-import React, {Component} from 'react';
-import { withRouter } from 'next/router';
+import React, {Component} from "react";
+import {withRouter} from "next/router";
+
+import {Nav} from "src/components";
+
 import css from "./style.scss";
 
 class Example extends Component {
-    static async getInitialProps (props) {
+    static async getInitialProps(props) {
         const {query} = props.query;
         return {
             query
@@ -12,11 +15,12 @@ class Example extends Component {
 
     render() {
 
-       const {id} = this.props.router.query;
+        const {id} = this.props.router.query;
 
         return (
             <div className={css.container}>
-                Example  {id}
+                <Nav />
+                Example {id}
             </div>
         );
     }

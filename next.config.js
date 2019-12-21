@@ -1,8 +1,9 @@
 const webpack = require("webpack");
+const path = require("path");
 require("dotenv").config({
-    path: (process.env.NODE_ENV === 'production') ? ".env" : ".env.development"
+    path: (process.env.NODE_ENV === "production") ? ".env" : ".env.development"
 });
-const withSass = require('@zeit/next-sass');
+const withSass = require("@zeit/next-sass");
 module.exports = withSass({
     cssModules: true,
     cssLoaderOptions: {
@@ -13,7 +14,7 @@ module.exports = withSass({
     webpack: config => {
         // Fixes npm packages that depend on `fs` module
         config.node = {
-            fs: 'empty'
+            fs: "empty"
         }
         /**
          * Returns environment variables as an object
@@ -27,6 +28,12 @@ module.exports = withSass({
          * at compile time, which in our case is our environment variables
          */
         config.plugins.push(new webpack.DefinePlugin(env));
-        return config
+
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            "src": path.resolve(__dirname, "./src"),
+            "server": path.resolve(__dirname, "./server"),
+        }
+        return config;
     },
 });
