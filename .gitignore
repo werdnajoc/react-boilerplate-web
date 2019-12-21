@@ -26,3 +26,12 @@ yarn-error.log*
 
 #ignore jetbrains editor configs
 .idea
+
+#ignore slint cache
+.eslintcache
+
+#ignore env files configuration
+.env
+.env.development
+.env.stage
+.env.test
