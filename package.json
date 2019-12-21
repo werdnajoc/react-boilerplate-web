@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "export NODE_ENV=development && node ./server/index.js",
     "build": "next build",
-    "start": "next start"
+    "start": "export NODE_ENV=production && next build && node ./server/index.js"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "next": "9.1.6",
+    "node-sass": "^4.13.0",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "webpack": "^4.41.4"
   }
 }
