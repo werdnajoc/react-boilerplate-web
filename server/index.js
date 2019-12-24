@@ -8,7 +8,7 @@ const webRoutes = require("./routes/web/routes");
 const apiRoutes = require("./routes/api/routes");
 const nextI18next = require("./i18n");
 
-let app = next({dev: true})
+let app = next({dev: true});
 
 const env = process.env.NODE_ENV;
 const port = (process.env.PORT) ? process.env.PORT : 3000;

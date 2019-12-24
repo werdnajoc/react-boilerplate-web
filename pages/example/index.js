@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "next/router";
 
-import {Nav} from "src/components";
-
-import { withTranslation } from "../../server/i18n";
+import {withTranslation} from "server/i18n";
 
 import css from "./style.scss";
 
@@ -22,9 +20,9 @@ class Example extends Component {
         return (
             <div className={css.container}>
                 Example {id}
-                <br />
+                <br/>
                 language: {this.props.i18n.language}
-                <br />
+                <br/>
                 translate: {this.props.t("common:World")}
             </div>
         );
