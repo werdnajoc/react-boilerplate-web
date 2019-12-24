@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {globalRequire} = require("../../helpers");
-const ExampleController = globalRequire("api/controllers/ExampleController.js");
+const ExampleController = require("server/api/controllers/ExampleController.js");
 
 router
     .get("/example", ExampleController);

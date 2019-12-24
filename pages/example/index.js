@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {withRouter} from "next/router";
+import PropTypes from "prop-types";
 
 import {withTranslation} from "server/i18n";
 
@@ -27,6 +28,10 @@ class Example extends Component {
             </div>
         );
     }
+}
+
+Example.propTypes = {
+    t: PropTypes.func.isRequired,
 }
 
 export default withRouter(withTranslation("common")(Example));

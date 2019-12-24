@@ -1,31 +1,31 @@
 import React, {Component} from "react";
-import {withRouter} from "next/router";
 import PropTypes from "prop-types";
 
 import {withTranslation} from "server/i18n";
 
 import css from "./style.scss";
 
-class Home extends Component {
+class Error extends Component {
     static async getInitialProps(props) {
-        const {query} = props.query;
+        const statusCode = props.res ? props.res.statusCode : props.err ? props.err.statusCode : 404;
         return {
-            query,
-            namespacesRequired: ["common"]
+            namespacesRequired: ["common"],
+            statusCode
         }
     }
 
     render() {
+        const {statusCode} = this.props;
         return (
             <div className={css.container}>
-
+                Error: {statusCode}
             </div>
         );
     }
 }
 
-Home.propTypes = {
+Error.propTypes = {
     t: PropTypes.func.isRequired,
 };
 
-export default withRouter(withTranslation("common")(Home));
+export default withTranslation("common")(Error);
