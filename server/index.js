@@ -1,11 +1,12 @@
 const express = require("express"),
     next = require("next"),
     compression =  require("compression"),
-    bodyParser = require("body-parser");
+    bodyParser = require("body-parser"),
+    nextI18NextMiddleware = require("next-i18next/middleware").default;
 
 const webRoutes = require("./routes/web/routes");
 const apiRoutes = require("./routes/api/routes");
-
+const nextI18next = require("./i18n");
 
 let app = next({dev: true})
 
@@ -25,11 +26,12 @@ app.prepare()
 
         server.use(compression())
             .use(bodyParser.urlencoded({extended: false}))
-            .use("/api", apiRoutes)
-            .use(bodyParser.json());
-
+            .use(bodyParser.json())
+            .use(nextI18NextMiddleware(nextI18next))
+            .use("/api", apiRoutes);
 
         webRoutes(server, app);
+
 
         server.all("*", (req, res) => {
             return handle(req, res)
